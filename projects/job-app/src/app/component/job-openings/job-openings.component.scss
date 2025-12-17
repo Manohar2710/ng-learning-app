@@ -1,0 +1,14 @@
+.job-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+}
+.job-field {
+    display: flex;
+    gap: 4px;
+    font-size: 14px;
+}
+.job-field .label {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.6);
+}

@@ -1,0 +1,21 @@
+<mat-card class="jo-mat-card" appearance="outlined">
+    <mat-card-header>
+        <mat-card-title>{{ jobCardInput.title }}</mat-card-title>
+        <mat-card-subtitle>{{jobCardInput.company}} • {{jobCardInput.location}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="job-field">
+            <span class="label">
+                Experience:
+            </span>
+            <span class="value">
+                {{ jobCardInput.experience }}
+            </span>
+        </div>
+ 
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <button mat-flat-button type="button" (click)="editJob(jobCardInput.id)">Edit</button>
+        <button mat-button type="button" (click)="deleteJob()">Delete</button>
+    </mat-card-actions>
+</mat-card>

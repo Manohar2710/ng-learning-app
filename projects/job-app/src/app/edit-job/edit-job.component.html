@@ -1,0 +1,25 @@
+<div class="edit-job-form-wrapper">
+  <form class="edit-job-form" ngForm="editJobForm">
+    
+    <mat-form-field>
+      <mat-label> Job Title </mat-label>
+      <input matInput ngModel="jobTitle" [(ngModel)]="jobDetais.title" name="jobTitle" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label> Experience </mat-label>
+      <input matInput ngModel="jobExperience" [(ngModel)]="jobDetais.experience" name="jobExperience" />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label> Location </mat-label>
+      <input matInput ngModel="jobLocation" [(ngModel)]="jobDetais.location" name="jobLocation"/>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label> Company </mat-label>
+      <input matInput ngModel="jobCompany" [(ngModel)]="jobDetais.company" name="jobCompany"/>
+    </mat-form-field>
+    <button mat-flat-button type="button" (click)="saveJob()">Save</button>
+  </form>
+  <footer>
+    <button mat-stroked-button="button" (click)="goBack()"><- Go back</button>
+  </footer>
+</div>

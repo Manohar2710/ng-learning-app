@@ -1,0 +1,17 @@
+<div class="job-openings-wrapper">
+    <div class="search-field-wrapper">
+        <mat-form-field class="search-field-form p-4">
+            <mat-label>
+                Search Jobs
+            </mat-label>
+            <input matInput ngModel="searchField" [(ngModel)]="searchedValue" (ngModelChange)="getJobPostForBySearch()"/>
+        </mat-form-field>
+
+    </div>
+    <div class="job-grid">
+        @for (item of jobOpeningList; track $index) {
+            <app-job-card [jobCardInput]="item"/>
+        }
+
+    </div>
+</div>
