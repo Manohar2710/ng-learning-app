@@ -1,0 +1,21 @@
+<mat-card class="product-card"  appearance="outlined">
+    <mat-card-header>
+        <mat-card-title>
+            <span>{{productDetails.name}}</span>
+        </mat-card-title>
+    </mat-card-header>
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+
+    <mat-card-content>
+        <div class="product-desc">
+         <span> {{productDetails.description}}</span>
+         <span> price : {{productDetails.price}}</span>
+         <span> category : {{productDetails.category}}</span>
+
+        </div>
+    </mat-card-content>
+    <mat-card-actions align="end">
+        <button mat-flat-button>Edit</button>
+        <button mat-raised-button>Delete</button>
+    </mat-card-actions>
+</mat-card>
