@@ -7,13 +7,20 @@ import { Products } from '../models/products/products.model';
   providedIn: 'root'
 })
 export class ProductsService {
+  
   private httpClient = inject(HttpClient);
   productsList : WritableSignal<Products[]>= signal<Products[]>([]);
+  product : WritableSignal<Products> = signal<Products>({});
   constructor() { }
 
   getProductList(){
     this.httpClient.get<Products[]>("http://localhost:8080/api/products").subscribe(res => {
       this.productsList.set(res);
+    });
+  }
+  getProduct(id: string | null) {
+    this.httpClient.get<Products>(`http://localhost:8080/api/product/${id}`).subscribe(res => {
+      this.product.set(res);
     });
   }
 }

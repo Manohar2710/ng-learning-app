@@ -2,16 +2,19 @@ import { Component, effect, inject, OnInit } from '@angular/core';
 import { Products } from '../../models/products/products.model';
 import { ProductCardComponent } from '../shared/product-card/product-card.component';
 import { ProductsService } from '../../service/products.service';
+import { MatButtonModule } from '@angular/material/button';
+import { NavHeaderComponent } from "../shared/nav-header/nav-header.component";
+
 
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [ProductCardComponent],
+  imports: [ProductCardComponent, MatButtonModule, NavHeaderComponent],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss'
 })
 export class ProductListComponent implements OnInit {
-  productService = inject(ProductsService);
+  private productService = inject(ProductsService);
   constructor() {
     effect(() =>{
       this.products = this.productService.productsList();
@@ -21,5 +24,6 @@ export class ProductListComponent implements OnInit {
     this.productService.getProductList();
 
   }
+
   products: Products[] = [];
 }

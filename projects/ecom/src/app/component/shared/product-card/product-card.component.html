@@ -1,4 +1,4 @@
-<mat-card class="product-card"  appearance="outlined">
+<mat-card class="product-card"  appearance="outlined" (click)="goToProductDetail()">
     <mat-card-header>
         <mat-card-title>
             <span>{{productDetails.name}}</span>
@@ -15,7 +15,7 @@
         </div>
     </mat-card-content>
     <mat-card-actions align="end">
-        <button mat-flat-button>Edit</button>
-        <button mat-raised-button>Delete</button>
+        <button mat-flat-button (click)="goToEditProduct()">Edit</button>
+        <button mat-raised-button (click)="goToDeleteProduct()">Delete</button>
     </mat-card-actions>
 </mat-card>
