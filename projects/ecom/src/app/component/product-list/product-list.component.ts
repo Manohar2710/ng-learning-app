@@ -1,5 +1,5 @@
 import { Component, effect, inject, OnInit } from '@angular/core';
-import { Products } from '../../models/products/products.model';
+import { Product } from '../../models/products/products.model';
 import { ProductCardComponent } from '../shared/product-card/product-card.component';
 import { ProductsService } from '../../service/products.service';
 import { MatButtonModule } from '@angular/material/button';
@@ -25,5 +25,5 @@ export class ProductListComponent implements OnInit {
 
   }
 
-  products: Products[] = [];
+  products: Product[] = [];
 }

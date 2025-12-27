@@ -1,6 +1,17 @@
 .product-card{
     width: 90%;
     height: 100%;
+    .product-quantity{ 
+        width: 10%;
+    }
+    .card-action-details{
+        display: flex;
+        place-content: center;
+        .add-remove-button{
+            display: flex;
+            place-content: center;
+        }
+    }
 }
 .product-desc {
     padding-top: 10px;

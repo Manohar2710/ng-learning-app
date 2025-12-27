@@ -1,4 +1,4 @@
-export interface Products {
+export interface Product {
   id?: number;
   name?: string;
   category?: string;
@@ -7,4 +7,8 @@ export interface Products {
   stockQuantity?: number;
   createdAt?: string;
   updatedAt?: string;
+}
+
+export interface ProductCard extends Product {
+  userAddedQuantity?: number;
 }

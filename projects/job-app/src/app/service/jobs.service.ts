@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
+import { environment } from '../../../../ecom/src/environments/environment';
 
 export interface JobOpenings {
   id?: number;
@@ -13,24 +14,24 @@ export interface JobOpenings {
   providedIn: 'root'
 })
 export class JobsService {
-
+  private apiUrl = environment.apiURl;
   jobOpeningList: WritableSignal<JobOpenings[]> = signal<JobOpenings[]>([]);
   private httpClient = inject(HttpClient);
   constructor() { }
 
   getJobList(){
-    this.httpClient.get<JobOpenings[]>("http://localhost:8080/jobs").subscribe(response => {
+    this.httpClient.get<JobOpenings[]>(`${this.apiUrl}/jobs`).subscribe(response => {
       this.jobOpeningList.set(response);
     })
   }
   getJobPostForSearch(searchedValue: string) {
-    this.httpClient.get<JobOpenings[]>(`http://localhost:8080/jobPost/search?keyword=${searchedValue}`).subscribe(response => {
+    this.httpClient.get<JobOpenings[]>(`${this.apiUrl}/jobPost/search?keyword=${searchedValue}`).subscribe(response => {
       this.jobOpeningList.set(response);
     })
   }
 
   deleteJob(jobCardInput: JobOpenings){
-    this.httpClient.delete("http://localhost:8080/jobPost", {body: jobCardInput}).subscribe(res => {
+    this.httpClient.delete(`${this.apiUrl}/jobPost`, {body: jobCardInput}).subscribe(res => {
       console.log("deleted successfully");
       this.getJobList();
     });
@@ -40,7 +41,7 @@ export class JobsService {
   }
 
   updateJob(jobPost: JobOpenings) {
-    this.httpClient.put("http://localhost:8080/jobPost", jobPost ).subscribe(res => {
+    this.httpClient.put(`${this.apiUrl}/jobPost`, jobPost ).subscribe(res => {
       console.log("updated Job successfully");
       this.getJobList();
     })
