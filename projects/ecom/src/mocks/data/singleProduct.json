@@ -1,0 +1,10 @@
+{
+    "id": 1,
+    "name": "Wireless Mouse",
+    "category": "Electronics",
+    "price": 799.00,
+    "description": "2.4 GHz wireless mouse with ergonomic design",
+    "stockQuantity": 120,
+    "imageName": "mouse.jpg",
+    "imageType": "image/jpeg"
+  }

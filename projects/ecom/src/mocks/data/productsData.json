@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "name": "Wireless Mouse",
+    "category": "Electronics",
+    "price": 799.00,
+    "description": "2.4 GHz wireless mouse with ergonomic design",
+    "stockQuantity": 120,
+    "imageName": "mouse.jpg",
+    "imageType": "image/jpeg"
+  },
+  {
+    "id": 2,
+    "name": "Mechanical Keyboard",
+    "category": "Electronics",
+    "price": 3499.00,
+    "description": "RGB backlit mechanical keyboard with blue switches",
+    "stockQuantity": 60,
+    "imageName": "keyboard.jpg",
+    "imageType": "image/jpeg"
+  },
+  {
+    "id": 3,
+    "name": "27-inch 4K Monitor",
+    "category": "Electronics",
+    "price": 21999.00,
+    "description": "Ultra HD IPS monitor with thin bezels",
+    "stockQuantity": 25,
+    "imageName": "monitor.jpg",
+    "imageType": "image/jpeg"
+  },
+  {
+    "id": 4,
+    "name": "USB-C Hub 7-in-1",
+    "category": "Accessories",
+    "price": 2499.00,
+    "description": "USB-C hub with HDMI, USB 3.0 and card reader ports",
+    "stockQuantity": 80,
+    "imageName": "usbhub.jpg",
+    "imageType": "image/jpeg"
+  },
+  {
+    "id": 5,
+    "name": "Noise Cancelling Headphones",
+    "category": "Electronics",
+    "price": 5999.00,
+    "description": "Over-ear Bluetooth headphones with active noise cancellation",
+    "stockQuantity": 40,
+    "imageName": "headphones.jpg",
+    "imageType": "image/jpeg"
+  },
+  {
+    "id": 6,
+    "name": "Laptop Sleeve 15.6\"",
+    "category": "Accessories",
+    "price": 899.00,
+    "description": "Water-resistant sleeve for 15.6-inch laptops",
+    "stockQuantity": 150,
+    "imageName": "laptop-sleeve.jpg",
+    "imageType": "image/jpeg"
+  },
+  {
+    "id": 7,
+    "name": "Portable SSD 1TB",
+    "category": "Storage",
+    "price": 7999.00,
+    "description": "USB 3.2 portable solid state drive with 1TB capacity",
+    "stockQuantity": 35,
+    "imageName": "ssd.jpg",
+    "imageType": "image/jpeg"
+  },
+  {
+    "id": 8,
+    "name": "Smartphone Stand",
+    "category": "Accessories",
+    "price": 399.00,
+    "description": "Adjustable aluminum stand for smartphones and tablets",
+    "stockQuantity": 200,
+    "imageName": "stand.jpg",
+    "imageType": "image/jpeg"
+  },
+  {
+    "id": 9,
+    "name": "Webcam 1080p",
+    "category": "Electronics",
+    "price": 2499.00,
+    "description": "Full HD webcam with built-in stereo microphone and privacy cover",
+    "stockQuantity": 70,
+    "imageName": "webcam.jpg",
+    "imageType": "image/jpeg"
+  },
+  {
+    "id": 10,
+    "name": "Bluetooth Speaker",
+    "category": "Audio",
+    "price": 3299.00,
+    "description": "Portable Bluetooth speaker with 12-hour battery life",
+    "stockQuantity": 55,
+    "imageName": "speaker.jpg",
+    "imageType": "image/jpeg"
+  }
+]
