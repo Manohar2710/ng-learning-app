@@ -7,7 +7,7 @@
   <img (click)="goToProductDetail()" mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
 
     <mat-card-content>
-        <div class="product-desc">
+        <div class="product-desc text-3xl font-bold ">
          <span> {{productDetails.description}}</span>
          <span> price : {{productDetails.price}}</span>
          <span> category : {{productDetails.category}}</span>
@@ -16,7 +16,7 @@
     </mat-card-content>
     <mat-card-actions  class="card-action-details">
         @if (productDetails.userAddedQuantity ?? 0 > 0) {
-            <div class="add-remove-button">
+            <div class="add-remove-button ">
                 <mat-icon (click)="addProductToCart()">add</mat-icon>
                 <input class="product-quantity" type="text" #productQuantity="ngModel" [(ngModel)]="productDetails.userAddedQuantity" appAllowOnlyNumbers/>
                 <mat-icon (click)="removeProduct()">remove</mat-icon>
