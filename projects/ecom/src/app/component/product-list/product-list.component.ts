@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { NavHeaderComponent } from "../shared/nav-header/nav-header.component";
 import { MatInput, MatFormField, MatLabel } from "@angular/material/input";
 import { FormsModule } from '@angular/forms';
-import { concatMap, debounceTime, distinctUntilChanged, from, merge, mergeMap, Subject, switchMap, takeUntil } from 'rxjs';
+import { catchError, concatMap, debounceTime, distinctUntilChanged, from, merge, mergeMap, of, Subject, switchMap, takeUntil } from 'rxjs';
 
 
 @Component({
@@ -36,18 +36,22 @@ export class ProductListComponent implements OnInit , OnDestroy{
   }
   ngOnInit(): void {
     this.productService.getProductList();
-    // this.searchSubject$.pipe(
-    //   debounceTime(300),
-    //   distinctUntilChanged(),
-    //   takeUntil(this.destroy$),
-    // ).subscribe(searchValue => {
-    //   this.productService.getProductListForSearch(searchValue);
-    // })
+    this.searchSubject$.pipe(
+      debounceTime(300),
+      distinctUntilChanged(),
+      takeUntil(this.destroy$),
+    ).subscribe(searchValue => {
+      this.productService.getProductListForSearch(searchValue).pipe(
+        catchError(err => {
+        console.error("Search Failed", err)
+        return of([]);
+      } ));
+    })
     // const mergeMapExample$ =  merge(
     //   this.productService.getProductDummy(),
     //   this.productService.getProductDummy()
     // ).pipe(mergeMap(apiCalls => apiCalls));
-
+    // console.log(mergeMapExample$);
 
     const listOfProductIdsToUpdate = [1,2,3,4];
     from(listOfProductIdsToUpdate).pipe(
