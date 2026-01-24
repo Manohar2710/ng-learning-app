@@ -24,4 +24,9 @@ export class ProductsService {
       this.product.set(res);
     });
   }
+  getProductListForSearch(searchInput: string | null) {
+    this.httpClient.get<Product[]>(`${this.apiUrl}/api/product/search?keyword=${searchInput}`).subscribe(res => {
+      this.productsList.set(res);
+    });
+  }
 }
