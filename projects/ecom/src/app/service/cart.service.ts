@@ -16,7 +16,7 @@ export class CartService {
   updatePoductToCart(product: Product, action?: ProductAction) {
     if (action == ProductAction.ADD) {
       const productFound = this.cartDetails?.products?.find(
-        (product) => product.id === product.id
+        (cartProduct) => cartProduct.id === product.id
       );
       if (productFound) {
         productFound.addedQuantity = productFound?.addedQuantity + 1;
