@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnDestroy, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { Product } from '../../models/products/products.model';
 import { ProductCardComponent } from '../shared/product-card/product-card.component';
@@ -7,7 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { NavHeaderComponent } from "../shared/nav-header/nav-header.component";
 import { MatInput, MatFormField, MatLabel } from "@angular/material/input";
 import { FormsModule } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, Subject, switchMap, takeUntil } from 'rxjs';
+import { concatMap, debounceTime, distinctUntilChanged, from, merge, mergeMap, Subject, switchMap, takeUntil } from 'rxjs';
 
 
 @Component({
@@ -43,7 +43,19 @@ export class ProductListComponent implements OnInit , OnDestroy{
     // ).subscribe(searchValue => {
     //   this.productService.getProductListForSearch(searchValue);
     // })
+    // const mergeMapExample$ =  merge(
+    //   this.productService.getProductDummy(),
+    //   this.productService.getProductDummy()
+    // ).pipe(mergeMap(apiCalls => apiCalls));
 
+
+    const listOfProductIdsToUpdate = [1,2,3,4];
+    from(listOfProductIdsToUpdate).pipe(
+      concatMap(id => this.productService.updateProduct(id))
+    ).subscribe({
+      next:() => console.log("Save!"),
+      complete:() => console.log("called all API calls one by one")
+    })
   }
   searchProducts(searchValue: string) {
     this.productService.getProductListForSearch(searchValue);

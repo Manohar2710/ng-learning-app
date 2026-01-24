@@ -20,6 +20,12 @@ export class ProductsService {
       this.productsList.set(res);
     });
   }
+  getProductDummy(){
+    return this.httpClient.get<Product[]>(`${this.apiUrl}/api/product/1`);
+  }
+  updateProduct(id: number) {
+    return this.httpClient.post<Product[]>(`${this.apiUrl}/api/product/update/${id}`, null);
+  }
   getProduct(id: string | null) {
     this.httpClient.get<Product>(`${this.apiUrl}/api/product/${id}`).subscribe(res => {
       this.product.set(res);
