@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { Product } from '../models/products/products.model';
 import { environment } from '../../environments/environment';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -24,9 +25,8 @@ export class ProductsService {
       this.product.set(res);
     });
   }
-  getProductListForSearch(searchInput: string | null) {
-    this.httpClient.get<Product[]>(`${this.apiUrl}/api/product/search?keyword=${searchInput}`).subscribe(res => {
-      this.productsList.set(res);
-    });
+  getProductListForSearch(searchInput: string | null): Observable<Product[]> {
+   return this.httpClient.get<Product[]>(`${this.apiUrl}/api/product/search?keyword=${searchInput}`);
+    
   }
 }
