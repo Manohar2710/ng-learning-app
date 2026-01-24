@@ -8,11 +8,13 @@ import { FormsModule } from "@angular/forms";
 import { AllowOnlyNumbersDirective } from '../../../shared/utils/allow-only-numbers.directive';
 import { CartService } from '../../../service/cart.service';
 import { CartDetails, productAction } from '../../../models/cart.model';
+import { BehaviorSubject } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [MatCard, MatCardTitle, MatCardContent, MatButton, MatCardHeader, MatCardActions, MatIcon, FormsModule, AllowOnlyNumbersDirective],
+  imports: [MatCard, MatCardTitle, MatCardContent, MatButton, MatCardHeader, MatCardActions, MatIcon, FormsModule, AllowOnlyNumbersDirective, AsyncPipe],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss',
 })
@@ -21,6 +23,7 @@ export class ProductCardComponent {
   private cartService = inject(CartService);
   @Input() productDetails!: ProductCard;
   cartDetails!: CartDetails;
+  quantity$ = new BehaviorSubject<number>(0);
   goToProductDetail() {
     this.routes.navigate([`/product-detail/${this.productDetails.id}`])
   }
@@ -36,7 +39,9 @@ export class ProductCardComponent {
   }
   updateProductData() {
     const productFound = this.cartService.cartDetails?.products?.find(product => product.id === this.productDetails.id );
-    this.productDetails.userAddedQuantity = productFound?.addedQuantity ?? 0;
+    this.quantity$.next(productFound?.addedQuantity ?? 0);
+    
+    // this.productDetails.userAddedQuantity = productFound?.addedQuantity ?? 0;
   }
   removeProduct() {
     this.cartService.updatePoductToCart(this.productDetails, productAction.REMOVE);
