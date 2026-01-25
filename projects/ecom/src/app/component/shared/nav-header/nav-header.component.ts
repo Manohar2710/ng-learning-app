@@ -14,7 +14,10 @@ import { MatButtonModule } from '@angular/material/button';
 export class NavHeaderComponent {
     private routes = inject(Router);
 
-    goToHome() {
+  goToHome() {
     this.routes.navigate(['/'])
+  }
+  goToLogin() {
+    this.routes.navigate(['/login'])
   }
 }

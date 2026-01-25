@@ -27,5 +27,9 @@ export const handlers = [
     //   statusText: 'Product Not Found',
     // });
   }),
+  http.post('http://localhost:8080/api/login', (params) => {
+    return HttpResponse.json("Success");
+    
+  }),
   // Add other handlers for POST, PUT, DELETE etc.
 ];

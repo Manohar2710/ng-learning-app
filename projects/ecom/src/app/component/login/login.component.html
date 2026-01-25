@@ -1,0 +1,59 @@
+<div class="login-container">
+    <div class="login-form-wrapper">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <!-- User name -->
+            <div class="form-field">
+                <label>Username</label>
+                <input 
+                type="text"
+                formControlName="username"
+                placeholder="Enter Username"
+                class="form-control"
+                [class.error]="usernameField?.invalid && usernameField?.touched"
+                />
+                @if(usernameField?.invalid && usernameField?.touched) {
+                    <div class="error-message">
+                        <div>Enter Valid Username</div>
+                    </div>
+                } 
+            </div>
+            <!-- password -->
+            <div class="form-field">
+                <label>Password</label>
+                <input 
+                type="password"
+                formControlName="password"
+                placeholder="Enter Password"
+                class="form-control"
+                [class.error]="passwordField?.invalid && passwordField?.touched"
+                />
+                @if (passwordField?.invalid && passwordField?.touched) {
+                    <div class="error-message">
+                        <div>Enter Valid Password</div>
+                    </div>
+                }
+                
+            </div>
+             <!-- Remember Me -->
+            <div class="form-group checkbox">
+                <label>
+                <input type="checkbox" formControlName="rememberMe">
+                    Remember me
+                </label>
+            </div>
+            <!-- Submit Button -->
+            <button 
+                type="submit" 
+                class="login-btn"
+                [disabled]="loginForm.invalid">
+                <span>Login</span>
+            </button>
+            <!-- API Error -->
+            @if (loginError()) {
+                <div class="api-error">{{ loginError() }}</div>
+            }
+        </form>
+
+    </div>
+
+</div>
