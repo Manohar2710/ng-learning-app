@@ -15,10 +15,10 @@
         </div>
     </mat-card-content>
     <mat-card-actions  class="card-action-details">
-        @if (productDetails.userAddedQuantity ?? 0 > 0) {
+        @if (quantity() > 0) {
             <div class="add-remove-button ">
                 <mat-icon (click)="addProductToCart()">add</mat-icon>
-                <input class="product-quantity" type="text" #productQuantity="ngModel" [(ngModel)]="productDetails.userAddedQuantity" appAllowOnlyNumbers/>
+                <input class="product-quantity" type="text" #productQuantity="ngModel" [ngModel]="quantity()" appAllowOnlyNumbers/>
                 <mat-icon (click)="removeProduct()">remove</mat-icon>
             </div>
         } @else {

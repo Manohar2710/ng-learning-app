@@ -7,13 +7,13 @@
         <mat-label>
             Search Product
         </mat-label>
-        <input matInput class="search-input" [(ngModel)]="searchProduct" (ngModelChange)="searchSubject$.next($event)"/>
+        <input matInput class="search-input" [(ngModel)]="searchProduct" />
 
     </mat-form-field>
 </div>
 <div class="products-list-wrapper">
     <div class="product-grid">
-        @for (item of products; track $index) {
+        @for (item of products(); track $index) {
             <app-product-card [productDetails]="item"></app-product-card>
         }
     </div>
