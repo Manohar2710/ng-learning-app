@@ -8,6 +8,8 @@ import { FormsModule } from "@angular/forms";
 import { AllowOnlyNumbersDirective } from '../../../shared/utils/allow-only-numbers.directive';
 import { CartService } from '../../../service/cart.service';
 import { CartDetails, productAction } from '../../../models/cart.model';
+import { BehaviorSubject } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-product-card',
