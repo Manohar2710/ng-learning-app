@@ -15,9 +15,7 @@ export class ProductsService {
   constructor() { }
 
   getProductList(){
-    this.httpClient.get<Product[]>(`${this.apiUrl}/api/products`).subscribe(res => {
-      this.productsList.set(res);
-    });
+    return this.httpClient.get<Product[]>(`${this.apiUrl}/api/products`);
   }
   getProduct(id: string | null) {
     this.httpClient.get<Product>(`${this.apiUrl}/api/product/${id}`).subscribe(res => {

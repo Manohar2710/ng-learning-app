@@ -2,7 +2,7 @@
 <app-nav-header/>
 <div class="products-list-wrapper">
     <div class="product-grid">
-        @for (item of products; track item.id) {
+        @for (item of products(); track $index) {
             <app-product-card [productDetails]="item"></app-product-card>
         }
     </div>
