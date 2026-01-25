@@ -8,8 +8,19 @@ export const handlers = [
     return HttpResponse.json(productsData);
     
   }),
-
-  http.get('http://localhost:8080/api/product/1', () => {
+  http.get('http://localhost:8080/api/product/search', () => {
+    // const {searchInput} = params;
+    // console.log(searchInput);
+    return HttpResponse.json(productsData);
+    
+  }),
+  http.post('http://localhost:8080/api/product/update/:id', () => {
+    // const {searchInput} = params;
+    // console.log(searchInput);
+    return HttpResponse.json(productsData);
+    
+  }),
+  http.get('http://localhost:8080/api/product/:id', () => {
     return HttpResponse.json(singleProduct);
     //  return new HttpResponse(null, {
     //   status: 404,

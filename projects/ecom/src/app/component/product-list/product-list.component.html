@@ -1,5 +1,16 @@
 
 <app-nav-header/>
+<!-- product search section -->
+
+<div class="product-search-wrapper flex justify-end">
+    <mat-form-field>
+        <mat-label>
+            Search Product
+        </mat-label>
+        <input matInput class="search-input" [(ngModel)]="searchProduct" />
+
+    </mat-form-field>
+</div>
 <div class="products-list-wrapper">
     <div class="product-grid">
         @for (item of products(); track $index) {
