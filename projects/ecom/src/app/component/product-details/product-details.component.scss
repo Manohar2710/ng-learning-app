@@ -1,3 +1,79 @@
 .product-details-wrapper{
-    
+    padding: 1.2rem;
+}
+
+.details-card {
+    max-width: 900px;
+    margin: 0 auto;
+    border-radius: 16px;
+    border: 1px solid #d7e1ef;
+}
+
+.price-section {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1rem;
+}
+
+.discounted {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: #173e7a;
+}
+
+.original {
+    text-decoration: line-through;
+    color: #77859a;
+}
+
+.discount-chip {
+    background: #ffe8cc;
+    color: #8a4f00;
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.stock {
+    margin: 0.45rem 0 0;
+    font-size: 0.86rem;
+    font-weight: 500;
+}
+
+.stock.in {
+    color: #146c43;
+}
+
+.stock.low {
+    color: #ad6a00;
+}
+
+.stock.out {
+    color: #9f2b2b;
+}
+
+.quantity-badge {
+    background: #edf3fb;
+    border: 1px solid #d1def0;
+    border-radius: 999px;
+    padding: 0.3rem 0.65rem;
+    font-size: 0.82rem;
+}
+
+.status-card {
+    max-width: 900px;
+    margin: 0 auto;
+    border: 1px solid #dde5f5;
+    background: #f8fbff;
+    border-radius: 12px;
+    padding: 1rem;
+    color: #23334f;
+}
+
+.status-card.error {
+    background: #fff3f3;
+    border-color: #f4d2d2;
+    color: #9f2b2b;
 }

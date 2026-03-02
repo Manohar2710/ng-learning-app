@@ -1,54 +1,67 @@
-import { ChangeDetectionStrategy, Component, inject, Input, OnInit, signal } from '@angular/core';
-import { Product, ProductCard } from '../../../models/products/products.model';
+import { ChangeDetectionStrategy, Component, computed, inject, Input, OnInit } from '@angular/core';
+import { ProductCard } from '../../../models/products/products.model';
 import { MatCard, MatCardTitle, MatCardContent, MatCardHeader, MatCardActions } from "@angular/material/card";
 import { MatButton } from "@angular/material/button";
 import { Router } from '@angular/router';
 import { MatIcon } from "@angular/material/icon";
-import { FormsModule } from "@angular/forms";
-import { AllowOnlyNumbersDirective } from '../../../shared/utils/allow-only-numbers.directive';
 import { CartService } from '../../../service/cart.service';
-import { CartDetails, productAction } from '../../../models/cart.model';
-import { BehaviorSubject } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
+import { productAction } from '../../../models/cart.model';
+import { DiscountBadgeDirective } from "../../../shared/discount-badge.directive";
+import { CurrencyPipe } from '@angular/common';
+import { ProductsService } from '../../../service/products.service';
 
 @Component({
   selector: 'app-product-card',
   standalone: true,
   changeDetection:ChangeDetectionStrategy.OnPush,
-  imports: [MatCard, MatCardTitle, MatCardContent, MatButton, MatCardHeader, MatCardActions, MatIcon, FormsModule, AllowOnlyNumbersDirective],
+  imports: [MatCard, MatCardTitle, MatCardContent, MatButton, MatCardHeader, MatCardActions, MatIcon, DiscountBadgeDirective, CurrencyPipe],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss',
 })
 export class ProductCardComponent implements OnInit {
-  
   private routes = inject(Router);
   private cartService = inject(CartService);
+  private productService = inject(ProductsService);
   @Input() productDetails!: ProductCard;
-  cartDetails!: CartDetails;
-  quantity = signal(0);
+  readonly quantity = computed(() => this.cartService.getProductQuantity(this.productDetails.id));
+  readonly discountedPrice = computed(() => this.productService.getDiscountedPrice(this.productDetails));
+  readonly stockStatus = computed(() => this.productService.getStockStatus(this.productDetails));
+  readonly isOutOfStock = computed(() => this.productDetails.stockQuantity <= 0);
+
   ngOnInit(): void {
-    this.quantity.set(this.productDetails.userAddedQuantity ?? 0);
+    if (this.productDetails.userAddedQuantity && this.quantity() === 0) {
+      for (let index = 0; index < this.productDetails.userAddedQuantity; index++) {
+        this.cartService.updatePoductToCart(this.productDetails, productAction.ADD);
+      }
+    }
   }
+
   goToProductDetail() {
     this.routes.navigate([`/product-detail/${this.productDetails.id}`])
   }
-  goToEditProduct() {
-    //TODO
-  }
-  goToDeleteProduct() {
-    //TODO
-  }
+
   addProductToCart() {
+    if (this.isOutOfStock()) {
+      return;
+    }
     this.cartService.updatePoductToCart(this.productDetails, productAction.ADD);
-    this.updateProductData();
   }
-  updateProductData() {
-    const productFound = this.cartService.cartDetails?.products?.find(product => product.id === this.productDetails.id );
-    this.quantity.set(productFound?.addedQuantity ?? 0);
-    // this.productDetails.userAddedQuantity = productFound?.addedQuantity ?? 0;
-  }
+
   removeProduct() {
     this.cartService.updatePoductToCart(this.productDetails, productAction.REMOVE);
-    this.updateProductData();
+  }
+
+  getStockLabel(): string {
+    if (this.stockStatus() === 'out') {
+      return 'Out of stock';
+    }
+    if (this.stockStatus() === 'low') {
+      return `Only ${this.productDetails.stockQuantity} left`;
+    }
+    return `In stock: ${this.productDetails.stockQuantity}`;
+  }
+
+  getStockClass(): string {
+    return this.stockStatus();
   }
 }

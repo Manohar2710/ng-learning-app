@@ -7,7 +7,8 @@
     "description": "2.4 GHz wireless mouse with ergonomic design",
     "stockQuantity": 120,
     "imageName": "mouse.jpg",
-    "imageType": "image/jpeg"
+    "imageType": "image/jpeg",
+    "discount": 20
   },
   {
     "id": 2,
@@ -17,7 +18,8 @@
     "description": "RGB backlit mechanical keyboard with blue switches",
     "stockQuantity": 60,
     "imageName": "keyboard.jpg",
-    "imageType": "image/jpeg"
+    "imageType": "image/jpeg",
+    "discount": 20
   },
   {
     "id": 3,
@@ -27,7 +29,8 @@
     "description": "Ultra HD IPS monitor with thin bezels",
     "stockQuantity": 25,
     "imageName": "monitor.jpg",
-    "imageType": "image/jpeg"
+    "imageType": "image/jpeg",
+    "discount": 20
   },
   {
     "id": 4,
@@ -37,7 +40,8 @@
     "description": "USB-C hub with HDMI, USB 3.0 and card reader ports",
     "stockQuantity": 80,
     "imageName": "usbhub.jpg",
-    "imageType": "image/jpeg"
+    "imageType": "image/jpeg",
+    "discount": 20
   },
   {
     "id": 5,
@@ -47,7 +51,8 @@
     "description": "Over-ear Bluetooth headphones with active noise cancellation",
     "stockQuantity": 40,
     "imageName": "headphones.jpg",
-    "imageType": "image/jpeg"
+    "imageType": "image/jpeg",
+    "discount": 20
   },
   {
     "id": 6,
@@ -57,7 +62,8 @@
     "description": "Water-resistant sleeve for 15.6-inch laptops",
     "stockQuantity": 150,
     "imageName": "laptop-sleeve.jpg",
-    "imageType": "image/jpeg"
+    "imageType": "image/jpeg",
+    "discount": 20
   },
   {
     "id": 7,
@@ -67,7 +73,8 @@
     "description": "USB 3.2 portable solid state drive with 1TB capacity",
     "stockQuantity": 35,
     "imageName": "ssd.jpg",
-    "imageType": "image/jpeg"
+    "imageType": "image/jpeg",
+    "discount": 20
   },
   {
     "id": 8,
@@ -87,7 +94,8 @@
     "description": "Full HD webcam with built-in stereo microphone and privacy cover",
     "stockQuantity": 70,
     "imageName": "webcam.jpg",
-    "imageType": "image/jpeg"
+    "imageType": "image/jpeg",
+    "discount": 20
   },
   {
     "id": 10,
@@ -97,6 +105,7 @@
     "description": "Portable Bluetooth speaker with 12-hour battery life",
     "stockQuantity": 55,
     "imageName": "speaker.jpg",
-    "imageType": "image/jpeg"
+    "imageType": "image/jpeg",
+    "discount": 20
   }
 ]

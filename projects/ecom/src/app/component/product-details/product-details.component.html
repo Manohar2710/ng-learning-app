@@ -1,27 +1,58 @@
 <app-nav-header />
-<div class="product-details-wrapper">
-    <!-- <div class="product-image">
-        <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-
-    </div>
-    <div class="product-info">
-        <span></span>
-    </div> -->
-    <mat-card class="example-card" appearance="outlined">
-        <mat-card-header>
-            <mat-card-title-group>
-                <mat-card-title>{{productInfo.name}}</mat-card-title>
-                <mat-card-subtitle>{{productInfo.category}}</mat-card-subtitle>
-                <mat-card-subtitle>{{productInfo.price}}</mat-card-subtitle>
-                <img mat-card-xl-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
-            </mat-card-title-group>
-        </mat-card-header>
-        <mat-card-content>
-            {{productInfo.description}}
-        </mat-card-content>
-        <mat-card-actions>
-            <button mat-flat-button >Edit</button>
-            <button mat-raised-button >Delete</button>
-        </mat-card-actions>
-    </mat-card>
-</div>
+<section class="product-details-wrapper">
+    @if (loading()) {
+        <div class="status-card">Loading product details...</div>
+    } @else if (!productInfo()) {
+        <div class="status-card error">Product details are not available.</div>
+    } @else {
+        <mat-card class="details-card" appearance="outlined">
+            <mat-card-header>
+                <mat-card-title-group>
+                    <div>
+                        <mat-card-title>{{ productInfo()?.name }}</mat-card-title>
+                        <mat-card-subtitle>{{ productInfo()?.category }}</mat-card-subtitle>
+                        <p class="stock" [class]="stockStatus()">{{ getStockLabel() }}</p>
+                    </div>
+                    <img
+                        mat-card-xl-image
+                        src="https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?auto=format&fit=crop&w=1200&q=80"
+                        alt="Product details image"
+                    />
+                </mat-card-title-group>
+            </mat-card-header>
+            <mat-card-content>
+                <p>{{ productInfo()?.description }}</p>
+                <div class="price-section">
+                    <span class="discounted">{{ discountedPrice() | currency:'INR' }}</span>
+                    @if (productInfo()?.discount) {
+                        <span class="original">{{ productInfo()?.price | currency:'INR' }}</span>
+                        <span class="discount-chip">{{ productInfo()?.discount }}% OFF</span>
+                    }
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                @if (quantity() > 0) {
+                    <button mat-stroked-button type="button" (click)="removeProduct()">Remove</button>
+                    <span class="quantity-badge">In Cart: {{ quantity() }}</span>
+                    <button
+                        mat-flat-button
+                        type="button"
+                        [disabled]="quantity() >= (productInfo()?.stockQuantity ?? 0)"
+                        (click)="addProduct()"
+                    >
+                        Add More
+                    </button>
+                } @else {
+                    <button
+                        mat-flat-button
+                        type="button"
+                        [disabled]="(productInfo()?.stockQuantity ?? 0) <= 0"
+                        (click)="addProduct()"
+                    >
+                        Add to Cart
+                    </button>
+                }
+            </mat-card-actions>
+        </mat-card>
+    }
+</section>

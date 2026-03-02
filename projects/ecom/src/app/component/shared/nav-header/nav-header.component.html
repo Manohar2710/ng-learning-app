@@ -1,19 +1,27 @@
 <mat-toolbar class="nav-header-wrapper">
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>ECom App</span>
-  <span class="example-spacer"></span>
-  <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with home icon" (click)="goToHome()">
-    <mat-icon fontIcon="home"></mat-icon>
-  </button>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon>share</mat-icon>
-  </button>
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-    <mat-icon>add_shopping_cart</mat-icon>
-  </button>
-  <button mat-icon-button class="example-icon flex justify-end" aria-label="Example icon-button with share icon " (click)="goToLogin()">
-    <mat-icon>login</mat-icon>
-  </button>
+    <button mat-icon-button aria-label="Go to home" (click)="goToHome()">
+        <mat-icon>storefront</mat-icon>
+    </button>
+    <span class="app-title">ECom App</span>
+    <span class="example-spacer"></span>
+    <button mat-button type="button" (click)="goToHome()">
+        <mat-icon>home</mat-icon>
+        Home
+    </button>
+    <div class="cart-summary">
+        <button
+            mat-icon-button
+            aria-label="View cart item count"
+            [matBadge]="cartItemCount()"
+            [matBadgeHidden]="cartItemCount() === 0"
+            matBadgeColor="warn"
+        >
+            <mat-icon>shopping_cart</mat-icon>
+        </button>
+        <span>{{ cartTotal() | currency:'INR' }}</span>
+    </div>
+    <button mat-button type="button" (click)="goToLogin()">
+        <mat-icon>login</mat-icon>
+        Login
+    </button>
 </mat-toolbar>

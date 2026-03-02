@@ -1,28 +1,66 @@
-<mat-card class="product-card"  appearance="outlined" >
+<mat-card class="product-card" appearance="outlined">
     <mat-card-header>
         <mat-card-title>
-            <span>{{productDetails.name}}</span>
+            <span>{{ productDetails.name }}</span>
         </mat-card-title>
+        @if (productDetails.discount) {
+            <span appDiscountBadge [discount]="productDetails.discount" class="discount-chip">
+                {{ productDetails.discount }}% OFF
+            </span>
+        }
     </mat-card-header>
-  <img (click)="goToProductDetail()" mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+    <img
+        (click)="goToProductDetail()"
+        mat-card-image
+        src="https://images.unsplash.com/photo-1517336714739-489689fd1ca8?auto=format&fit=crop&w=1200&q=80"
+        alt="Product preview image"
+    />
 
     <mat-card-content>
-        <div class="product-desc text-3xl font-bold ">
-         <span> {{productDetails.description}}</span>
-         <span> price : {{productDetails.price}}</span>
-         <span> category : {{productDetails.category}}</span>
-
+        <div class="product-desc">
+            <p class="description">{{ productDetails.description }}</p>
+            <p class="category">{{ productDetails.category }}</p>
+            <div class="price-row">
+                <span class="price">{{ discountedPrice() | currency:'INR' }}</span>
+                @if (productDetails.discount) {
+                    <span class="original-price">{{ productDetails.price | currency:'INR' }}</span>
+                }
+            </div>
+            <p class="stock-status" [class]="getStockClass()">{{ getStockLabel() }}</p>
         </div>
     </mat-card-content>
-    <mat-card-actions  class="card-action-details">
+    <mat-card-actions class="card-action-details">
         @if (quantity() > 0) {
-            <div class="add-remove-button ">
-                <mat-icon (click)="addProductToCart()">add</mat-icon>
-                <input class="product-quantity" type="text" #productQuantity="ngModel" [ngModel]="quantity()" appAllowOnlyNumbers/>
-                <mat-icon (click)="removeProduct()">remove</mat-icon>
+            <div class="add-remove-button">
+                <button
+                    mat-icon-button
+                    aria-label="Reduce quantity"
+                    type="button"
+                    (click)="removeProduct()"
+                >
+                    <mat-icon>remove</mat-icon>
+                </button>
+                <span class="product-quantity">{{ quantity() }}</span>
+                <button
+                    mat-icon-button
+                    aria-label="Increase quantity"
+                    type="button"
+                    [disabled]="quantity() >= productDetails.stockQuantity"
+                    (click)="addProductToCart()"
+                >
+                    <mat-icon>add</mat-icon>
+                </button>
             </div>
         } @else {
-            <button mat-flat-button (click)="addProductToCart()">Add to Cart</button>
+            <button
+                mat-flat-button
+                color="primary"
+                type="button"
+                [disabled]="isOutOfStock()"
+                (click)="addProductToCart()"
+            >
+                {{ isOutOfStock() ? 'Out of Stock' : 'Add to Cart' }}
+            </button>
         }
     </mat-card-actions>
 </mat-card>

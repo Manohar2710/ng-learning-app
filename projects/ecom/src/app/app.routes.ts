@@ -7,6 +7,10 @@ export const routes: Routes = [
     {
         path:'products', component: ProductListComponent
     },
+    // redirectTo now can take function as input, ,which allows dynamic data option
+    {
+        path: '', redirectTo: 'products', pathMatch:'full' // full | prefix, prefix matches for any nested path , full matches the 
+    },
     {
         path:'login', component: LoginComponent
     },

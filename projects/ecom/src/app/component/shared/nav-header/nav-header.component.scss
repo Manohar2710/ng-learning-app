@@ -1,8 +1,38 @@
 .nav-header-wrapper{
-    background-color: #146BC1;
-
+    background: linear-gradient(100deg, #103d7a, #1561b6 70%, #1f7fd3);
     color: white;
-    .mat-icon{
-        color: white;
+    display: flex;
+    gap: 0.35rem;
+    border-bottom: 1px solid #0c315f;
+
+    .mat-icon {
+      color: white;
     }
+}
+
+.app-title {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.cart-summary {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 0.2rem;
+  gap: 0.25rem;
+  font-size: 0.86rem;
+}
+
+@media (max-width: 600px) {
+  .app-title {
+    font-size: 0.95rem;
+  }
+
+  .cart-summary span {
+    display: none;
+  }
 }
