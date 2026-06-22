@@ -14,7 +14,7 @@ export class ProductsService {
   constructor() {}
 
   getProductList(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(`${this.apiUrl}/api/products`).pipe(
+    return this.httpClient.get<Product[]>(`${this.apiUrl}/product`).pipe(
       retry(1),
       catchError((err) => {
         console.error('getProductList failed', err);
@@ -24,7 +24,7 @@ export class ProductsService {
   }
 
   getProductDummy(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(`${this.apiUrl}/api/produc/1`).pipe(
+    return this.httpClient.get<Product[]>(`${this.apiUrl}/product/1`).pipe(
       retry(3),
       catchError((err) => {
         console.error('get Product failed', err);
@@ -34,7 +34,7 @@ export class ProductsService {
   }
 
   updateProduct(id: number): Observable<Product[]> {
-    return this.httpClient.post<Product[]>(`${this.apiUrl}/api/product/update/${id}`, null).pipe(
+    return this.httpClient.post<Product[]>(`${this.apiUrl}/product/update/${id}`, null).pipe(
       retry(2),
       catchError((err) => {
         console.error('updateProduct failed', err);
@@ -44,7 +44,7 @@ export class ProductsService {
   }
 
   getProduct(id: number): Observable<Product | null> {
-    return this.httpClient.get<Product>(`${this.apiUrl}/api/product/${id}`).pipe(
+    return this.httpClient.get<Product>(`${this.apiUrl}/product/${id}`).pipe(
       catchError((err) => {
         console.error('getProduct failed', err);
         return of(null);
